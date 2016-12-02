@@ -12,12 +12,10 @@ RUN apt-get update && apt-get install -y \
         libpng12-dev \
         libxml2-dev \
         zlib1g-dev \
-        php5-sqlite php5-mysql \
+        php5-sqlite \
     && docker-php-ext-install iconv mbstring mcrypt soap sockets zip \
     && docker-php-ext-configure gd --enable-gd-native-ttf --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install gd \
-    && docker-php-ext-configure mysql --with-mysql=mysqlnd \
-    && docker-php-ext-install mysql
+    && docker-php-ext-install gd pdo pdo_mysql
 
 # Add a PHP config file. The file was copied from a php53 dotdeb package and
 # lightly modified (mostly for improving debugging). This may not be the best
