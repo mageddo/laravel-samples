@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
         libpng12-dev \
         libxml2-dev \
         zlib1g-dev \
+        php5-sqlite php5-mysql \
     && docker-php-ext-install iconv mbstring mcrypt soap sockets zip \
     && docker-php-ext-configure gd --enable-gd-native-ttf --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
