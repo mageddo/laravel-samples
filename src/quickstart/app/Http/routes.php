@@ -15,11 +15,9 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-   return view('tasks', [
-			'tasks' => [
-				(object) array('name' => 'Elis', 'id' => 1)
-			]
-   ]);
+	return view('tasks', [
+		'tasks' => Task::orderBy('created_at', 'asc')->get()
+	]);
 });
 
 Route::get('/hello', function () {
@@ -27,15 +25,14 @@ Route::get('/hello', function () {
 });
 
 /**
- * Add A New Task
+ * New Task
  */
-Route::post('/task', function (Request $request) {
-    //
-});
+Route::post('/task', 'TaskController@newTask');
 
 /**
  * Delete An Existing Task
  */
 Route::delete('/task/{id}', function ($id) {
-    //
+	Task::findOrFail($id)->delete();
+	return redirect('/');
 });
