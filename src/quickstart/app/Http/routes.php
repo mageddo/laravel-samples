@@ -15,7 +15,11 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-//    return view('welcome');
+   return view('tasks', [
+			'tasks' => [
+				(object) array('name' => 'Elis', 'id' => 1)
+			]
+   ]);
 });
 
 Route::get('/hello', function () {
